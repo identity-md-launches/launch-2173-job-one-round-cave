@@ -31,3 +31,23 @@
   required 512px JPEG. No other picture was saved by this step.
 - Counted 22 existing numbered JSON records and added 23; older records and the
   line's goal are unchanged. No chain request or currency value was needed.
+
+## Mark 24
+
+- Read the goal, current Unit Flint source, tests, README, gathering report,
+  prior record 23 and wall-v3. The report lists no outstanding Line 4 defect.
+- Improved the existing tool with exact inclusive lower and upper bounds,
+  reusing its bounded parser, dimensions and Fraction values. No dependencies,
+  network calls, environment access, currency prices or transactions are needed.
+- Added seven standard-library tests, including 200 seeded independent rational
+  interval comparisons, and retained the 13 inherited tests unchanged.
+- Used the imagegen skill and installed image generator for a worn ochre motif
+  of two stakes enclosing a pebble. Extracted its pigment and composited it into
+  bare rock above Pepe. All pixels outside that small rectangle are identical
+  to wall-v3; no ancestor was removed or redrawn.
+- Read and used gathering/make_preview.py for PNG decoding and the required
+  JPEG encoding. No image dependency was installed. The temporary generator
+  output was overwritten at the declared wall-v4 path by the finished wall;
+  no additional picture is delivered.
+- Counted 23 existing numbered records and added 24. Goal and older records
+  remain byte-identical. Updated wall.png's relative link to wall-v4.png.

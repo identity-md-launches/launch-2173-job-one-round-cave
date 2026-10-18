@@ -277,6 +277,10 @@ def main(argv: list[str] | None = None) -> int:
     cli.add_argument("--json", action="store_true", help="emit machine-readable exact result")
     cli.add_argument("--expect", metavar="EXPRESSION",
                      help="check exact equality to a claimed quantity (exit 1 if unequal)")
+    cli.add_argument("--at-least", metavar="EXPRESSION",
+                     help="check an inclusive lower bound with matching dimensions")
+    cli.add_argument("--at-most", metavar="EXPRESSION",
+                     help="check an inclusive upper bound with matching dimensions")
     args = cli.parse_args(argv)
     source = args.expression
     try:
@@ -293,6 +297,20 @@ def main(argv: list[str] | None = None) -> int:
                 )
             difference = Parser.bounded(
                 Quantity(result.value - expected.value, result.dims), 0)
+        bounds = {}
+        for name, expression in (("at_least", args.at_least), ("at_most", args.at_most)):
+            if expression is None:
+                continue
+            source = expression
+            bound = Parser(source).parse()
+            if bound.dims != result.dims:
+                raise UnitError(
+                    f"bound dimension {dimensions(bound.dims)} does not match result {dimensions(result.dims)}",
+                    0,
+                )
+            bounds[name] = bound
+        if len(bounds) == 2 and bounds["at_least"].value > bounds["at_most"].value:
+            raise UnitError("lower bound exceeds upper bound", 0)
         if args.to:
             source = args.to
             target = Parser(source, target=True).parse()
@@ -327,6 +345,17 @@ def main(argv: list[str] | None = None) -> int:
             "base_unit": dimensions(result.dims),
             "matches": difference.value == 0,
         }
+    if bounds:
+        output["bounds"] = {"base_unit": dimensions(result.dims), "inclusive": True}
+        for name, bound in bounds.items():
+            passed = (result.value >= bound.value if name == "at_least"
+                      else result.value <= bound.value)
+            output["bounds"][name] = {
+                "expression": getattr(args, name),
+                "base_value": exact_decimal(bound.value),
+                "passes": passed,
+            }
+        output["bounds"]["passes"] = all(output["bounds"][name]["passes"] for name in bounds)
     if args.json:
         print(json.dumps(output, separators=(",", ":")))
     else:
@@ -335,7 +364,14 @@ def main(argv: list[str] | None = None) -> int:
             verdict = "match" if difference.value == 0 else "mismatch"
             print(f"{verdict}: expected {args.expect}; result - expected = "
                   f"{exact_decimal(difference.value)} {dimensions(result.dims)}")
-    return 1 if expected is not None and difference.value != 0 else 0
+        if bounds:
+            for name in bounds:
+                check = output["bounds"][name]
+                print(f"{'pass' if check['passes'] else 'fail'}: "
+                      f"{name.replace('_', ' ')} {check['expression']} (inclusive)")
+    failed_claim = expected is not None and difference.value != 0
+    failed_bounds = bool(bounds) and not output["bounds"]["passes"]
+    return 1 if failed_claim or failed_bounds else 0
 
 
 if __name__ == "__main__":

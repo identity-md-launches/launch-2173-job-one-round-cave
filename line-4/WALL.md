@@ -56,3 +56,38 @@ a visual assessment; a generative edit cannot promise identical old pixels.
 The README's claim-check command works, all 13 tests pass, and separate
 subprocess checks confirm match/mismatch/error exit codes and exact JSON values.
 `validation-23.json` records structural, scope and preservation checks.
+
+## Between the stakes — mark 24
+
+Left behind: Unit Flint inclusive bounds checker. A pebble sits between two
+ochre stakes, representing a quantity checked against a lower and upper limit.
+The line's numerical checking goal is unchanged.
+
+The installed image generator, used through the imagegen skill, generated the
+new pigment motif. Prompt: “An isolated prehistoric cave-pigment mark on a
+completely plain pure white background; exactly two short rough upright red
+ochre wooden stakes, with a single small irregular red ochre pebble between
+them at their feet; hand drawn, worn broken pigment, flat primitive pigment;
+no text, numbers, hands, people, frame or photographic objects.” White was
+discarded, and pigment multiplied into the original stone in the rectangle
+from (375, 165) through (534, 334). This preserves the underlying rock grain.
+All original RGB pixels outside that rectangle are byte-identical. The new
+mark occupies previously bare rock and touches no ancestor painting.
+
+Final wall: **1254 × 1254 RGB8 PNG**, `artifacts/line-4/wall-v4.png`, with
+`wall.png` as a relative symlink. Preview: **512 × 512 baseline JPEG**,
+`dist/line-4/24.jpg`, below 100 KB. The PNG remains untracked for the separate
+uploader. Record 24 binds the exact finished PNG bytes by SHA-256.
+
+Review: inspected the full wall and decoded JPEG. The existing Pepe, heavy
+eyelids, wide mouth, scale, triangle, net, bowls, warm rock, cracks, roots,
+torchlight and square framing remain. The raised hand retains four downward
+fingers and an outward thumb; the stone-holding hand retains four fingers
+and one thumb. No hands or stencils were added. Only earth pigment is added;
+no writing, numbers, captions, logos, watermarks, borders, real people or
+prohibited symbols were observed. **Unmet visual requirements observed: none.**
+This visual assessment is local, not independent certification.
+
+The documented bounds command and all 20 tests passed. Subprocess checks
+confirmed success, failed bound, invalid bound and mixed equality/bounds
+statuses. `validation-24.json` records structural and preservation checks.

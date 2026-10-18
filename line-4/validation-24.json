@@ -1,0 +1,145 @@
+{
+  "mark": 24,
+  "tool": "Unit Flint inclusive bounds checker",
+  "tests": {
+    "passed": 20,
+    "seeded_range_comparisons": 200
+  },
+  "cli_checks": [
+    {
+      "args": [
+        "5 MiB / (2 MiB/s)",
+        "--at-least",
+        "2000 ms",
+        "--at-most",
+        "3 s",
+        "--to",
+        "s",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\"expression\":\"5 MiB / (2 MiB/s)\",\"value\":\"2.5\",\"unit\":\"s\",\"base_value\":\"2.5\",\"base_unit\":\"s\",\"dimensions\":{\"length\":0,\"mass\":0,\"time\":1,\"data\":0},\"bounds\":{\"base_unit\":\"s\",\"inclusive\":true,\"at_least\":{\"expression\":\"2000 ms\",\"base_value\":\"2\",\"passes\":true},\"at_most\":{\"expression\":\"3 s\",\"base_value\":\"3\",\"passes\":true},\"passes\":true}}",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "5 MiB / (2 MiB/s)",
+        "--at-most",
+        "2400 ms",
+        "--json"
+      ],
+      "exit": 1,
+      "stdout": "{\"expression\":\"5 MiB / (2 MiB/s)\",\"value\":\"2.5\",\"unit\":\"s\",\"base_value\":\"2.5\",\"base_unit\":\"s\",\"dimensions\":{\"length\":0,\"mass\":0,\"time\":1,\"data\":0},\"bounds\":{\"base_unit\":\"s\",\"inclusive\":true,\"at_most\":{\"expression\":\"2400 ms\",\"base_value\":\"2.4\",\"passes\":false},\"passes\":false}}",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "0 m",
+        "--at-most",
+        "0 s",
+        "--json"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "unit-flint: bound dimension s does not match result m\n  0 s\n  ^"
+    },
+    {
+      "args": [
+        "1 m",
+        "--expect",
+        "2 m",
+        "--at-most",
+        "2 m",
+        "--json"
+      ],
+      "exit": 1,
+      "stdout": "{\"expression\":\"1 m\",\"value\":\"1\",\"unit\":\"m\",\"base_value\":\"1\",\"base_unit\":\"m\",\"dimensions\":{\"length\":1,\"mass\":0,\"time\":0,\"data\":0},\"check\":{\"expression\":\"2 m\",\"expected_base_value\":\"2\",\"difference_base_value\":\"-1\",\"base_unit\":\"m\",\"matches\":false},\"bounds\":{\"base_unit\":\"m\",\"inclusive\":true,\"at_most\":{\"expression\":\"2 m\",\"base_value\":\"2\",\"passes\":true},\"passes\":true}}",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "10 km / 2 h",
+        "--expect",
+        "5 km/h",
+        "--to",
+        "m/s",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\"expression\":\"10 km / 2 h\",\"value\":\"25/18\",\"unit\":\"m/s\",\"base_value\":\"25/18\",\"base_unit\":\"m*s^-1\",\"dimensions\":{\"length\":1,\"mass\":0,\"time\":-1,\"data\":0},\"check\":{\"expression\":\"5 km/h\",\"expected_base_value\":\"25/18\",\"difference_base_value\":\"0\",\"base_unit\":\"m*s^-1\",\"matches\":true}}",
+      "stderr": ""
+    }
+  ],
+  "goal_and_ancestors_byte_identical": [
+    "line-4/GOAL.md",
+    "line-4/tools/unit-flint/test_unit_flint.py",
+    "artifacts/line-4/wall-v2.png",
+    "artifacts/line-4/wall-v3.png",
+    "dist/line-4/04.json",
+    "dist/line-4/22.json",
+    "dist/line-4/01.jpg",
+    "dist/line-4/18.json",
+    "dist/line-4/05.json",
+    "dist/line-4/06.json",
+    "dist/line-4/23.jpg",
+    "dist/line-4/19.json",
+    "dist/line-4/12.json",
+    "dist/line-4/07.json",
+    "dist/line-4/09.json",
+    "dist/line-4/01.json",
+    "dist/line-4/08.json",
+    "dist/line-4/03.json",
+    "dist/line-4/11.json",
+    "dist/line-4/15.json",
+    "dist/line-4/13.json",
+    "dist/line-4/21.json",
+    "dist/line-4/10.json",
+    "dist/line-4/22.jpg",
+    "dist/line-4/20.json",
+    "dist/line-4/14.json",
+    "dist/line-4/23.json",
+    "dist/line-4/16.json",
+    "dist/line-4/02.json",
+    "dist/line-4/17.json"
+  ],
+  "wall": {
+    "path": "artifacts/line-4/wall-v4.png",
+    "format": "RGB8 PNG",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 3969987,
+    "sha256": "3da977872d3b42c912d93c7302c84db1c4b25093e234a9769a468c9bde26e238",
+    "changed_pixels": 9393,
+    "changes_confined_to_rectangle": [
+      375,
+      165,
+      535,
+      335
+    ],
+    "pixels_outside_rectangle_identical": true
+  },
+  "preview": {
+    "path": "dist/line-4/24.jpg",
+    "format": "baseline JPEG",
+    "width": 512,
+    "height": 512,
+    "bytes": 82529
+  },
+  "visual_review": {
+    "full_wall_and_jpeg_inspected": true,
+    "existing_marks_preserved": true,
+    "digits_per_existing_hand": 5,
+    "new_hands": 0,
+    "writing_observed": false,
+    "unmet_visual_requirements": []
+  },
+  "record_shape_and_hash_valid": true,
+  "older_records_unchanged": true,
+  "scope_check_passed": true,
+  "diff_whitespace_check_passed": true,
+  "limitations": [
+    "Exact arithmetic checks supplied inputs, not measured reality.",
+    "Bounds are inclusive acceptance criteria, not propagated measurement uncertainty.",
+    "Visual assessment is local, not independent certification."
+  ]
+}

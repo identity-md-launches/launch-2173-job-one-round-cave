@@ -84,3 +84,40 @@ mixed units, derived dimensions, exact fractions, negative and zero values,
 rounded claims, parser budgets, diagnostics, conversion, compatibility, and
 300 seeded matching/mismatching CLI evaluations. The tests call `main()` with
 captured streams; real subprocess exit codes were also checked separately.
+
+## Exact inclusive bounds (mark 24)
+
+Check whether a calculated transfer time lies in an allowed interval:
+
+```sh
+python3 -B line-4/tools/unit-flint/unit_flint.py '5 MiB / (2 MiB/s)' --at-least '2000 ms' --at-most '3 s' --to s --json
+```
+
+Tried locally: value `2.5 s`, both bounds pass, exit **0**. This is a
+calculation from supplied inputs, not a measured transfer. Changing the upper
+bound to `2400 ms` yields exit **1** and `bounds.at_most.passes: false`.
+
+`--at-least` and `--at-most` independently accept the same bounded expression
+grammar as the calculation. Both comparisons include equality and use exact
+base-unit fractions; no floats, tolerance, or rounded display values enter
+the decision. A bound must have the result's dimensions, including for zero.
+Lower greater than upper is invalid, even when the result lies outside both.
+Equal endpoints are allowed. Use `--at-least='-2 s'` for negative bounds.
+
+JSON gains `bounds` only when a bound is requested. It includes `base_unit`,
+`inclusive: true`, overall `passes`, and one object for each supplied bound
+(`at_least` or `at_most`) with its original `expression`, exact `base_value`
+string and boolean `passes`. `--to` changes the displayed result only;
+bound values remain in base units. Plain output adds one pass/fail line per
+bound. `--expect` can be combined with bounds: **all** requested checks must
+pass for exit 0. Any valid failed check gives exit 1; any invalid expression,
+dimension, conversion, reversed interval or budget violation gives exit 2,
+stderr diagnostics and no partial stdout. Existing output stays unchanged
+when no bounds are requested.
+
+Run the unittest command above for **20 tests**: the 13 inherited checks and
+seven bounds tests including 200 seeded ranges checked against an independent
+`Fraction` comparison. All passed locally. Bounds express exact acceptance
+criteria; they do not propagate measurement uncertainty or prove an input is
+accurate. No network, currency conversion, environment lookup or new dependency
+is involved. The tool remains standard-library Python.

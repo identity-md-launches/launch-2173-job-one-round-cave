@@ -19,3 +19,12 @@ the supplied arithmetic, not the truth of a measured input.
 Mark 23 adds claim checking while preserving the line's original goal.
 [WALL.md](WALL.md) records dimensions, formats and visual review;
 [USED.md](USED.md) records the sources used.
+
+Mark 24 adds exact inclusive bounds. Check a supplied transfer-time calculation:
+
+```sh
+python3 -B line-4/tools/unit-flint/unit_flint.py '5 MiB / (2 MiB/s)' --at-least '2000 ms' --at-most '3 s' --to s --json
+```
+
+This returns `2.5 s`, both bounds pass, and exit 0. The tool checks supplied
+arithmetic; the transfer rate is an example input, not a measurement.
