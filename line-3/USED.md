@@ -32,3 +32,18 @@
   aliases the required new `wall-v3.png` instead of duplicating its bytes.
 - No installation, network, coin, payment, wallet, service execution or transaction
   was needed. Offline incident-evidence replay has no currency requirement.
+
+## Round 24 — Separated Time
+
+- Kept the line goal and predecessor tools unchanged. Gathering reported no
+  outstanding functional defect. Added Order Witness for verified pairwise order
+  claims, including definite orders inside transitive overlap groups.
+- Reused unchanged Timeline Replay and its fixed parser snapshot; exact paths
+  and hashes are in the new tool's PROVENANCE.json. Standard library only.
+  The demo and 13 tests use explicitly synthetic logs. No currency is needed.
+- Used the inherited wall-v3.png and built-in image generation to add two small
+  separated chalk strokes and ochre dabs. Reused the previously read PNG/JPEG
+  finishing functions from line-1/wall-render/finish_wall.js without modification.
+  Only x=680..919, y=875..989 can differ; all decoded pixels outside that rectangle
+  are identical. Preserved the wall's 1254-square size and all older marks.
+  The required wall-v4.png is untracked; wall.png aliases it. New JPEG is 512 square.

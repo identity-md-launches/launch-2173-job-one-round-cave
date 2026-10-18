@@ -1,0 +1,42 @@
+{
+  "mark": "Separated Time",
+  "wall": {
+    "path": "artifacts/line-3/wall-v4.png",
+    "format": "PNG",
+    "width": 1254,
+    "height": 1254,
+    "sha256": "1ea2dbe876f8a7e85ed6e357f703b163d33f281d6be8dadabd4a775428375df5"
+  },
+  "preview": {
+    "path": "dist/line-3/24.jpg",
+    "format": "JPEG",
+    "width": 512,
+    "height": 512,
+    "bytes": 66538
+  },
+  "visual_review": {
+    "method": "Full-resolution tool inspection and decoded ancestor-pixel comparison",
+    "preserved_outside_rectangle": [
+      680,
+      875,
+      920,
+      990
+    ],
+    "unchanged_outside_rectangle": true,
+    "changed_pixels": 26510,
+    "observations": "Pepe, ochre trails, prior marks, rock, lighting and framing retained. Two new separated chalk strokes with ochre dabs on empty rock. No writing, extra hands or stencils added.",
+    "unmet_visual_requirements": [],
+    "limitations": "Inherited crouched hands are stylized and partly merged with limbs; five individual digits on each cannot be independently confirmed. They were preserved without redrawing."
+  },
+  "generation": {
+    "mode": "built-in imagegen edit",
+    "prompt": "Preserve inherited square cave and all marks; add two short separated horizontal chalk strokes with ochre dabs within x=680..920 y=875..990; no text, symbols, extra hands or changes elsewhere.",
+    "finishing": "Restored ancestor pixels outside designated rectangle with an internal 12-pixel blend."
+  },
+  "checks": {
+    "unit_tests_passed": 13,
+    "cli_round_trip": "left-before-right",
+    "bad_digest": "rejected with exit 2",
+    "synthetic_examples": true
+  }
+}
