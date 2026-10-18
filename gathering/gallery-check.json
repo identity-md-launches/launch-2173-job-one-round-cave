@@ -1,28 +1,36 @@
 {
-  "passed": true,
-  "viewports": [
-    {
-      "width": 320,
-      "documentWidth": 320,
-      "cards": 112,
-      "brokenLoadedImages": [],
-      "overflowingElements": []
+  "checks_passed": true,
+  "method": "Python HTMLParser, record comparison and JPEG frame inspection; no browser or network",
+  "numbered_cards": 116,
+  "local_image_references": 20,
+  "unique_local_previews": 19,
+  "walls": {
+    "gathering": {
+      "painted": 4,
+      "future": 17
     },
-    {
-      "width": 390,
-      "documentWidth": 390,
-      "cards": 112,
-      "brokenLoadedImages": [],
-      "overflowingElements": []
+    "line-1": {
+      "painted": 4,
+      "future": 20
     },
-    {
-      "width": 1440,
-      "documentWidth": 1440,
-      "cards": 112,
-      "brokenLoadedImages": [],
-      "overflowingElements": []
+    "line-2": {
+      "painted": 3,
+      "future": 20
+    },
+    "line-3": {
+      "painted": 4,
+      "future": 20
+    },
+    "line-4": {
+      "painted": 4,
+      "future": 20
     }
-  ],
-  "browserErrors": [],
-  "note": "Local file gallery checked without screenshots or external page requests. Full artifact links were not opened."
+  },
+  "all_records_in_descending_painted_then_future_order": true,
+  "all_local_links_and_previews_resolve": true,
+  "external_script_style_font_dependencies": 0,
+  "html_bytes": 48428,
+  "limitations": [
+    "No browser layout, responsive rendering or accessibility certification is claimed."
+  ]
 }

@@ -24,6 +24,7 @@ def module(name, path):
 
 
 json_lantern = module('replay_json_lantern', HERE / 'engines/json-lantern/json_lantern.py')
+json_citations = module('replay_json_citations', HERE / 'engines/json-citations/json_citations.py')
 unit = module('replay_unit_flint', HERE / 'engines/unit-flint/unit_flint.py')
 lantern = json_lantern.lantern
 MAX_JSON_LINES = 2000
@@ -60,7 +61,7 @@ def review_bytes(raw, expected=None):
     reviews, review_count, finding_count, errors, json_lines = [], 0, 0, 0, 0
     listings_truncated = False
 
-    def retain(report, source, kind, line=None):
+    def retain(report, source, kind, line=None, source_span=None, source_sha256=None):
         nonlocal review_count, finding_count, errors, listings_truncated
         review_count += 1
         finding_count += report.get('finding_count', 0)
@@ -70,7 +71,8 @@ def review_bytes(raw, expected=None):
         if report.get('finding_count', 0) or 'error_escaped' in report:
             if len(reviews) < MAX_RETAINED_REVIEWS:
                 reviews.append({'source_escaped': lantern.escaped(source),
-                                'domain': kind, 'physical_line': line, 'report': report})
+                                'domain': kind, 'physical_line': line, 'report': report,
+                                'source_span': source_span, 'source_sha256': source_sha256})
             else:
                 listings_truncated = True
 
@@ -80,23 +82,37 @@ def review_bytes(raw, expected=None):
         retain(lantern.scan(data, name, FINDINGS_PER_REVIEW), name, 'raw-source')
         # Match Time Flint's BOM and CRLF interpretation, keeping physical lines.
         # Inspect *all* JSON-looking lines, even ones omitted by the timeline.
-        for number, physical in enumerate(data.decode('utf-8-sig').split('\n'), 1):
-            line = physical.removesuffix('\r')
-            if not line.lstrip().startswith('{'):
+        offset = 0
+        for number, physical in enumerate(data.split(b'\n'), 1):
+            begin = offset
+            offset += len(physical) + 1
+            if number == 1 and physical.startswith(b'\xef\xbb\xbf'):
+                physical = physical[3:]
+                begin += 3
+            line = physical.removesuffix(b'\r')
+            if not line.decode('utf-8').lstrip().startswith('{'):
                 continue
             json_lines += 1
             if json_lines > MAX_JSON_LINES:
                 raise ValueError(f'review exceeds {MAX_JSON_LINES} JSON-looking lines; split the evidence')
-            encoded = line.encode('utf-8')
+            span = json_citations.citation(data, begin, begin + len(line))
             try:
-                report = json_lantern.review(encoded, '<physical-json-line>', FINDINGS_PER_REVIEW)
+                report = json_citations.review(line, '<physical-json-line>', FINDINGS_PER_REVIEW)
+                for finding in report['findings']:
+                    # Keep inherited line-local citations unchanged. Add a separate
+                    # domain for offsets in the entire original embedded source.
+                    finding['embedded_source_spans'] = {
+                        key: json_citations.citation(data, begin + finding[key]['byte_start'],
+                                                    begin + finding[key]['byte_end'])
+                        for key in ('source_token', 'first_source_token',
+                                    'source_focus', 'first_source_focus') if key in finding}
             except (ValueError, UnicodeError, RecursionError) as exc:
                 report = {'error_escaped': lantern.escaped(str(exc)),
-                          'sha256': hashlib.sha256(encoded).hexdigest(),
+                          'sha256': hashlib.sha256(line).hexdigest(),
                           'assessment': 'review-incomplete'}
-            retain(report, name, 'decoded-json-line', number)
+            retain(report, name, 'decoded-json-line', number, span, entry['sha256'])
     return {
-        'schema_version': 1, 'tool': 'replay-review',
+        'schema_version': 1, 'tool': 'replay-review', 'tool_version': '1.1.0',
         'pack_sha256': hashlib.sha256(raw).hexdigest(),
         'digest_pin_checked': expected is not None,
         'replay': verified,
@@ -110,7 +126,8 @@ def review_bytes(raw, expected=None):
             'A digest only authenticates bytes when obtained independently from a trusted source.',
             'Unicode triage is heuristic; a clean report is not a safety verdict.',
             'Raw and decoded findings may describe the same character; counts are not unique incidents.',
-            'Decoded offsets are local to a string; structural paths are local to the cited physical JSON line.',
+            'Decoded offsets are string-local; source_token/source_focus ranges are JSON-line-local; embedded_source_spans ranges refer to original embedded source bytes.',
+            'Source spans exclude an initial BOM and a trailing CR/LF; whole-source hashes cover every original byte.',
             'Only JSON-looking object lines are decoded; plain log messages are scanned as raw text.',
             'At most 100 interesting reviews, with 50 findings each, are retained; truncation is explicit.',
             'Clock bounds are analyst assumptions; overlap does not establish causal order.',

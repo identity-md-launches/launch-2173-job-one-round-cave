@@ -1,78 +1,69 @@
-# The Evidence Bundle
+# The Thread to the Source
 
-The third gathering checks every current line tool and adds
-[Replay Review](../shared/replay-review/README.md): portable incident replay with
-raw and decoded JSON Unicode evidence, including explicitly omitted log records.
-It joins unmodified pieces from Lines 2, 3 and 4; all line files remain unchanged.
+The fourth gathering checks all 11 line tools and improves
+[Replay Review](../shared/replay-review/README.md): Line 2's unchanged JSON
+Citations now traces Unicode findings in Line 3's portable logs to exact original
+embedded-file bytes. Existing line files and older shared engine snapshots remain
+unchanged. Python 3.10+, standard library only; no install or network needed.
 
 ```sh
 python3 -B shared/replay-review/replay_review.py demo
 ```
 
 Observed synthetic result: two replayed events, one explicit omission, seven
-decoded findings, and tampering rejected. Runs offline with Python 3.10+ and
-only the standard library. The shared folder is portable with its engine snapshots.
-Replay proves consistency; a separately trusted digest can bind exact pack bytes.
-It does not prove truthful logs, identity, clock accuracy or safety.
+decoded findings, zero review errors and a changed timeline rejected. Retained
+JSON findings include line-local citations and separately named original-file
+spans. BOM, CRLF and multibyte prefixes are counted as original bytes. Read the
+shared README before applying offsets or interpreting hashes. Replay checks
+consistency; authenticity requires an independently trusted digest. Unicode rules
+remain heuristic and clock bounds remain assumptions.
 
-[REPORT.md](REPORT.md) records what was tried for each line, what works, limits,
-possible breakage and a bounded direction for 21 Pepes. [COINS.md](COINS.md) says
-none: these capabilities do not require a new currency or a contract deployment.
+[REPORT.md](REPORT.md) covers each line, tried commands, working behavior, limits,
+the repaired stale snapshot audit and a bounded direction for 21 Pepes.
+[COINS.md](COINS.md) says none: these offline tools need no currency or deployment.
+Final observations: **230 passing tests** (173 line, 45 shared, 12 gathering),
+11 real source scans and **23 passing CLI exercises** with expected error statuses.
+The runner hashes 78 line files before/after; Time Flint's fixtures run on exact
+copies in scratch. No dependency was installed. The structural check compares
+194 tracked ancestor files against the inherited tree.
 
-## Reproduce
-
-Read tool sources first, then run from the repository root:
+Read sources before running from the repository root:
 
 ```sh
-python3 -B gathering/check_tools.py > gathering/check-results.json
-python3 -B gathering/try_tools.py > gathering/demo-results.json
-python3 -B gathering/make_preview.py artifacts/gathering/wall-v3.png dist/gathering/03.jpg
-python3 -B gathering/build_dist.py
+python3 -B gathering/check_tools.py
+python3 -B gathering/try_tools.py
 python3 -B gathering/verify.py
 ```
 
-Observed: **169 passing tests** (122 line, 35 shared, 12 gathering), eight real
-source scans and **16 passing CLI exercises**, including expected mismatch and
-invalid-input statuses. Time Flint's exact source/test bytes are copied to
-`test/scratch/` before its suite runs, so temporary fixtures do not touch the
-line folders. `check-results.json` hashes all 57 line files before and after.
-The structural checker separately compares 163 tracked ancestral files against
-the inherited tree. No package was installed.
+To regenerate the preview and gallery from delivered records:
 
-## Media
+```sh
+python3 -B gathering/make_preview.py artifacts/gathering/wall-v4.png dist/gathering/04.jpg
+python3 -B gathering/build_dist.py
+```
 
-| Path | Format | Dimensions | Bytes |
-| --- | --- | --- | --- |
-| `artifacts/gathering/wall-v3.png` | RGB8 PNG | 1254 × 1254 | 2,815,196 |
-| `artifacts/gathering/wall.png` | relative alias to `wall-v3.png` | same wall | 11-byte link |
-| `dist/gathering/03.jpg` | baseline JPEG | 512 × 512 | 96,809 |
+The wall is RGB8 PNG, **1254 × 1254**, at `artifacts/gathering/wall-v4.png`,
+3,948,336 bytes. The current-wall alias points to it. Its SHA-256 is
+`7779e68c90298c77f269dbcaadcfe9f93acb260e90505e2197fde3cb7483078c`.
+The preview is baseline JPEG, **512 × 512**, 96,950 bytes, at
+`dist/gathering/04.jpg`. The declared PNG stays untracked for the separate uploader.
 
-PNG SHA-256:
-`1dfc13ced7ee35bdbaae5439246fd231f19d62be8818ee18109a3b8d0735760e`.
-The declared PNG is an untracked regular file for the separate artifact uploader.
-The alias prevents a second PNG copy in the source bundle. Prior gathering
-records, previews and the prior full PNG remain intact.
+The installed image tool generated the small pebble/thread pigment motif; only
+that pigment was composited onto previously bare stone above Pepe. The final
+prompt is in [image-prompt.txt](image-prompt.txt), and `mark-process.json` records
+the compositing bounds. Independent pixel comparison confirms that only 3,153
+pixels changed, all inside the motif. Every ancestral mark and the rest of the
+rock, cracks, roots, colour, light and framing remain identical. Both inherited
+hands were counted at five digits each. Full PNG and JPEG were inspected; no
+writing or prohibited symbols observed. **Unmet visual requirements: none
+observed.** Local review is not independent visual certification, and the worn
+motif loses fine detail in the small preview.
 
-The image tool edited Gathering 02, adding a small charcoal loop with three
-chalk dabs and a red ochre closure beside Pepe's head. Seated Pepe, all previous
-marks, rock, cracks, roots, warm light and framing visually remain in place.
-Full PNG and decoded JPEG were inspected. Both visible hands have five digits,
-four fingers and one thumb each; no extra hands or stencils. No letters,
-numbers, signatures, logos, frames or prohibited symbols were observed.
-**Unmet visual requirements: none observed.** Generative editing does not
-promise pixel-identical unpainted regions. `wall-review.json` records the visual
-review; `validation.json` records independent structural checks, not visual
-certification. No intermediate image or extra preview was saved in the workspace.
-
-`dist/gathering/03.json` and `dist/one.json` reference the actual whole-wall hash.
-The self-contained gallery HTML uses local JPEG previews, inline styling and no
-script/font/style dependency. Full-resolution artifact links require network.
-All 112 numbered records are shown by wall, painted newest first; 98 placeholders
-are retained. The four original goals are reproduced verbatim in `dist/goals.json`.
-This is a later gathering, so no first-gathering placeholder regeneration was needed.
-
-`gallery-check.json` records Chromium layout checks at 320, 390 and 1440 px:
-112 cards, no horizontal overflow, no broken loaded image and no page error.
-All 15 image references were additionally checked to resolve to local JPEGs.
-`portable-check.json` records the new shared demo running from a copied folder
-without any line directories. No browser screenshot or extra image was saved.
+The gallery lists all 116 numbered records under their walls, with painted
+records and future slots each newest first. Four exact goals are published in
+`dist/goals.json`; Gathering 04 and One 736 reference the finished whole-wall
+hash. Local JPEGs, inline CSS and no scripts/fonts/stylesheets make the page
+usable offline; full-resolution artifact links require network. This is a later
+gathering, so existing placeholders were preserved except the painted slot 04.
+`validation.json`, `gallery-check.json`, `portable-check.json`, and
+`wall-review.json` record current checks and limitations.

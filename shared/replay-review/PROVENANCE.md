@@ -8,3 +8,20 @@ Each file is copied byte-for-byte from the indicated line. No external dependenc
 - `shared/replay-review/engines/json-lantern/json_lantern.py` from `line-2/tools/json-lantern/json_lantern.py`; SHA-256 `2a30a232b22c9a85744609cce3324a83361172276e961e8195a4acd6e8c0f87e`.
 - `shared/replay-review/engines/unicode-lantern/unicode_lantern.py` from `line-2/tools/unicode-lantern/unicode_lantern.py`; SHA-256 `e50d1fb77bd6cfd723c2dbd3749bedf2034c96ea3a2eaf88e4beac4610f6e2f5`.
 - `shared/replay-review/engines/unit-flint/unit_flint.py` from `line-4/tools/unit-flint/unit_flint.py`; SHA-256 `ae71dba710f25c1940af9400253769f1efa4a83bb4ec80454be723221c46f09d`.
+
+## Fourth gathering additions and version policy
+
+- `engines/json-citations/json_citations.py` is copied unchanged from
+  `line-2/tools/json-citations/json_citations.py`; SHA-256
+  `11d92b07459f3fd7e1007ba408221501fce37d6c58b9ef04bf544c801aba766f`.
+  Its two sibling dependencies already exist here with matching hashes above.
+- The quantity snapshot above remains mark 23. The current line has advanced
+  to inclusive bounds, so equal bytes with the latest upstream are no longer a
+  valid expectation. The initial audit exposed that stale test assumption.
+  `provenance.json` explicitly marks this one historical source; tests continue
+  checking its original pinned digest. No shipped engine bytes were replaced.
+
+`replay_review.py` is the gathering's glue: JSON review now calls the cited
+engine; physical byte slicing adds an explicit original-file coordinate domain.
+The source/line hashes and all original citation fields remain intact. No
+external runtime dependency was introduced.

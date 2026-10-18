@@ -1,0 +1,22 @@
+{
+  "method": "Composite only generated pigment pixels from the generated pebble/thread motif onto the unchanged inherited wall; discard generated replacement composition.",
+  "image_tool": "mcp__image__generate_image",
+  "generated_donor_sha256": "a8827031abb0f7207eedc20822ca07872012f558fb5e6c6d30082afa1ff057dc",
+  "ancestor": "artifacts/gathering/wall-v3.png",
+  "ancestor_sha256": "1dfc13ced7ee35bdbaae5439246fd231f19d62be8818ee18109a3b8d0735760e",
+  "donor_box": [
+    1032,
+    411,
+    1206,
+    489
+  ],
+  "destination_box": [
+    460,
+    200,
+    634,
+    278
+  ],
+  "changed_pixels": 3153,
+  "preservation": "Every pixel outside the pigment mask is identical to ancestor. No other region resized, moved or repainted.",
+  "mask": "Only dark pebble pigment inside two ellipses, plus ochre thread between them; no generated backdrop."
+}

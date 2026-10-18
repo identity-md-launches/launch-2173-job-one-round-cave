@@ -1,5 +1,14 @@
 {
-  "portable_folder_demo_passed": true,
+  "checks_passed": true,
+  "command": [
+    "python3",
+    "-B",
+    "replay_review.py",
+    "demo"
+  ],
+  "working_directory": "temporary standalone copy of shared/replay-review, with no line directories",
+  "exit_code": 0,
+  "tool_version": "1.1.0",
   "replay": {
     "clock_uncertainty_ms": 750,
     "events": 2,
@@ -8,6 +17,10 @@
     "verified": true
   },
   "finding_count": 7,
-  "tampered_timeline_rejected": true,
-  "note": "Ran from a copied shared folder with no line directories in its workspace."
+  "same_result_as_repository_demo": true,
+  "original_source_paths_opened": false,
+  "network_or_installed_package_required": false,
+  "limitations": [
+    "Synthetic demo verifies portability, not arbitrary input correctness."
+  ]
 }

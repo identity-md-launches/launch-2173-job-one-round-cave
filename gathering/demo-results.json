@@ -407,6 +407,277 @@
       "diagnostic": "unit-flint: expected dimension s does not match result m\n  0 s\n  ^\n"
     },
     {
+      "name": "frozen benchmark",
+      "command": [
+        "python3",
+        "-B",
+        "line-1/tools/frozen-benchmark/frozen_benchmark.py",
+        "demo"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "observed": {
+        "check": {
+          "schema": "frozen-benchmark-check-v1",
+          "status": "complete_observations",
+          "plan_sha256": "13d5c3882c0082a7c603ad464645f312f6ebe6bee4622cc9f4c35710e8086f8e",
+          "manifest_bytes_sha256": "ebecf5db72911452a8cbb59c5a38497db7e270ad661e47a4f939e5cd6c1f497b",
+          "observation_bytes_sha256": "ba14a98d2ee63fe84b8f2d970559af3b0e9e11126a9f0cce72e34c56d906bd9b",
+          "normalized_csv_sha256": "3ee1c2e479379e624def23b5e5f8f960ecac7b8bd4c9c38f24154c35ce9fa691",
+          "case_count": 3,
+          "candidates": [
+            "synthetic-fast-v1",
+            "synthetic-careful-v1"
+          ],
+          "baseline": "synthetic-parser-v1",
+          "pass_rule": "Synthetic fixture only: output equals the case expected value exactly.",
+          "alpha": "0.05",
+          "limits": [
+            "Consistency with a pinned plan does not prove preregistration or honest execution.",
+            "Case IDs do not bind case payloads; keep the actual inputs and immutable system versions.",
+            "Independence, pass-rule application and absence of repeated looks are not verified."
+          ]
+        },
+        "rejected": {
+          "missing_case": "missing planned cases: 1",
+          "unplanned_case": "unplanned observed case ID: extra",
+          "family_drift": "CSV header differs from complete planned candidate family and order"
+        },
+        "normalized_csv": "case,baseline,synthetic-fast-v1,synthetic-careful-v1\nempty,1,1,1\nunicode,0,1,1\ntruncated,0,0,1\n"
+      }
+    },
+    {
+      "name": "JSON citations",
+      "command": [
+        "python3",
+        "-B",
+        "line-2/tools/json-citations/json_citations.py",
+        "--demo"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "observed": {
+        "finding_count": 5,
+        "assessment": "review-required",
+        "sha256": "6041529b8515405f820466096a25d48876a0c98f3d6576de4a74189b9f53f2d2"
+      }
+    },
+    {
+      "name": "actual record citations",
+      "command": [
+        "python3",
+        "-B",
+        "line-2/tools/json-citations/json_citations.py",
+        "--file",
+        "dist/line-2/23.json"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "observed": {
+        "finding_count": 0,
+        "assessment": "no-covered-patterns-found",
+        "sha256": "f13b8825b51e461677535b7704fa8d36f249afdba87c82e8368cf49bf3433ebb"
+      }
+    },
+    {
+      "name": "event order witness",
+      "command": [
+        "python3",
+        "-B",
+        "line-3/tools/order-witness/order_witness.py",
+        "demo"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "observed": {
+        "same_group_certain_order": {
+          "clock_model": {
+            "uncertainty_ms": 0
+          },
+          "format": "order-witness/1",
+          "interpretation": "Temporal order under asserted clock bounds; no causal claim.",
+          "left": {
+            "end_utc_exclusive": "2026-10-18T10:00:01Z",
+            "line": 1,
+            "line_sha256": "b9e5f05c23074c0b38a1b151747c9bb662ef4f34bd6a1ced4f2fcd204502c10e",
+            "overlap_group": 1,
+            "source": "a.log",
+            "start_utc": "2026-10-18T10:00:00Z"
+          },
+          "relation": "left-before-right",
+          "replay": {
+            "clock_uncertainty_ms": 0,
+            "events": 3,
+            "omitted": 0,
+            "sources": 3,
+            "verified": true
+          },
+          "right": {
+            "end_utc_exclusive": "2026-10-18T10:00:03Z",
+            "line": 1,
+            "line_sha256": "8ea3cacc2e9e7620217a3ead6515a373cdf761628e328b034d004f1710e0d349",
+            "overlap_group": 1,
+            "source": "c.log",
+            "start_utc": "2026-10-18T10:00:02Z"
+          }
+        },
+        "overlap": {
+          "clock_model": {
+            "uncertainty_ms": 0
+          },
+          "format": "order-witness/1",
+          "interpretation": "Temporal order under asserted clock bounds; no causal claim.",
+          "left": {
+            "end_utc_exclusive": "2026-10-18T10:00:01Z",
+            "line": 1,
+            "line_sha256": "b9e5f05c23074c0b38a1b151747c9bb662ef4f34bd6a1ced4f2fcd204502c10e",
+            "overlap_group": 1,
+            "source": "a.log",
+            "start_utc": "2026-10-18T10:00:00Z"
+          },
+          "relation": "unresolved-overlap",
+          "replay": {
+            "clock_uncertainty_ms": 0,
+            "events": 3,
+            "omitted": 0,
+            "sources": 3,
+            "verified": true
+          },
+          "right": {
+            "end_utc_exclusive": "2026-10-18T10:01:00Z",
+            "line": 1,
+            "line_sha256": "c85e4529c382982322e795ea30b2ddb6a9d34dd525e1a0b69b889d9848a36db1",
+            "overlap_group": 1,
+            "source": "bridge.log",
+            "start_utc": "2026-10-18T10:00:00Z"
+          }
+        },
+        "widened": {
+          "clock_model": {
+            "assumption": "Each source clock differs from UTC by at most this bound at every event.",
+            "kind": "asserted_symmetric_bound",
+            "precision_assumption": "Timestamps are truncated to their displayed precision.",
+            "uncertainty_ms": 750
+          },
+          "format": "order-witness/1",
+          "interpretation": "Temporal order under asserted clock bounds; no causal claim.",
+          "left": {
+            "end_utc_exclusive": "2026-10-18T10:00:01.750000Z",
+            "line": 1,
+            "line_sha256": "b9e5f05c23074c0b38a1b151747c9bb662ef4f34bd6a1ced4f2fcd204502c10e",
+            "overlap_group": 1,
+            "source": "a.log",
+            "start_utc": "2026-10-18T09:59:59.250000Z"
+          },
+          "relation": "unresolved-overlap",
+          "replay": {
+            "clock_uncertainty_ms": 750,
+            "events": 2,
+            "omitted": 0,
+            "sources": 2,
+            "verified": true
+          },
+          "right": {
+            "end_utc_exclusive": "2026-10-18T10:00:03.750000Z",
+            "line": 1,
+            "line_sha256": "8ea3cacc2e9e7620217a3ead6515a373cdf761628e328b034d004f1710e0d349",
+            "overlap_group": 1,
+            "source": "c.log",
+            "start_utc": "2026-10-18T10:00:01.250000Z"
+          }
+        }
+      }
+    },
+    {
+      "name": "inclusive duration bounds",
+      "command": [
+        "python3",
+        "-B",
+        "line-4/tools/unit-flint/unit_flint.py",
+        "5 MiB / (2 MiB/s)",
+        "--at-least",
+        "2000 ms",
+        "--at-most",
+        "3 s",
+        "--to",
+        "s",
+        "--json"
+      ],
+      "expected_exit": 0,
+      "exit_code": 0,
+      "passed": true,
+      "observed": {
+        "value": "2.5",
+        "unit": "s",
+        "bounds": {
+          "base_unit": "s",
+          "inclusive": true,
+          "at_least": {
+            "expression": "2000 ms",
+            "base_value": "2",
+            "passes": true
+          },
+          "at_most": {
+            "expression": "3 s",
+            "base_value": "3",
+            "passes": true
+          },
+          "passes": true
+        }
+      }
+    },
+    {
+      "name": "duration bound failed",
+      "command": [
+        "python3",
+        "-B",
+        "line-4/tools/unit-flint/unit_flint.py",
+        "5 MiB / (2 MiB/s)",
+        "--at-most",
+        "2400 ms",
+        "--json"
+      ],
+      "expected_exit": 1,
+      "exit_code": 1,
+      "passed": true,
+      "observed": {
+        "value": "2.5",
+        "unit": "s",
+        "bounds": {
+          "base_unit": "s",
+          "inclusive": true,
+          "at_most": {
+            "expression": "2400 ms",
+            "base_value": "2.4",
+            "passes": false
+          },
+          "passes": false
+        }
+      }
+    },
+    {
+      "name": "reversed duration bounds",
+      "command": [
+        "python3",
+        "-B",
+        "line-4/tools/unit-flint/unit_flint.py",
+        "2.5 s",
+        "--at-least",
+        "3 s",
+        "--at-most",
+        "2 s",
+        "--json"
+      ],
+      "expected_exit": 2,
+      "exit_code": 2,
+      "passed": true,
+      "diagnostic": "unit-flint: lower bound exceeds upper bound\n  2 s\n  ^\n"
+    },
+    {
       "name": "shared reviewed timeline",
       "command": [
         "python3",

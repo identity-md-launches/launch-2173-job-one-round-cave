@@ -21,9 +21,9 @@ def main():
     before = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
               for n in range(1, 5) for p in (ROOT / f"line-{n}").rglob("*") if p.is_file()}
     suites = ["line-1/tools/paired-verdict", "line-1/tools/candidate-ladder",
-              "line-1/tools/paired-power", "line-2/tools/unicode-lantern",
-              "line-2/tools/json-lantern", "test/scratch/time-flint", "line-3/tools/timeline-replay",
-              "line-4/tools/unit-flint", "gathering", "shared/reviewed-timeline", "shared/replay-review"]
+              "line-1/tools/paired-power", "line-1/tools/frozen-benchmark", "line-2/tools/unicode-lantern",
+              "line-2/tools/json-lantern", "line-2/tools/json-citations", "test/scratch/time-flint", "line-3/tools/timeline-replay",
+              "line-3/tools/order-witness", "line-4/tools/unit-flint", "gathering", "shared/reviewed-timeline", "shared/replay-review"]
     checks = []
     for suite in suites:
         command = [sys.executable, "-B", "-m", "unittest", "discover", "-s", suite, "-v"]
@@ -37,6 +37,9 @@ def main():
     for source in ("line-1/tools/paired-verdict/paired_verdict.py",
                    "line-1/tools/candidate-ladder/candidate_ladder.py",
                    "line-1/tools/paired-power/paired_power.py",
+                   "line-1/tools/frozen-benchmark/frozen_benchmark.py",
+                   "line-2/tools/json-citations/json_citations.py",
+                   "line-3/tools/order-witness/order_witness.py",
                    "line-2/tools/json-lantern/json_lantern.py",
                    "line-3/tools/timeline-replay/timeline_replay.py",
                    "line-2/tools/unicode-lantern/unicode_lantern.py",

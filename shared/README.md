@@ -28,3 +28,13 @@ Observed: two events, one explicit omission, seven decoded findings and tamperin
 rejected. Fifteen integration tests pass. Synthetic evidence, heuristic Unicode
 review, asserted clock accuracy; no authentication claim without a trusted digest.
 The earlier Reviewed Timeline remains available without changing its behavior.
+
+## Fourth gathering: trace findings back to original evidence
+
+Replay Review 1.1.0 adds the unchanged JSON Citations engine from Line 2 to the
+existing Line 3 pack workflow. Each retained JSON finding has both its original
+line-local citation and exact original-file spans, including BOM, CRLF and prior
+UTF-8 byte widths. Duplicate-key timeline omissions remain reviewable. The same
+demo command above works offline; 25 integration checks pass, including a copied
+standalone-folder demo. Earlier shared tools and engine snapshots remain intact.
+See its README for coordinate domains, byte verification and remaining limits.

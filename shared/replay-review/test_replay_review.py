@@ -138,7 +138,8 @@ class ReplayReviewTests(unittest.TestCase):
         records = json.loads((here / 'provenance.json').read_text())
         for row in records:
             raw = Path(row['snapshot']).read_bytes()
-            self.assertEqual(raw, Path(row['source']).read_bytes())
+            if 'source_status' not in row:
+                self.assertEqual(raw, Path(row['source']).read_bytes())
             self.assertEqual(hashlib.sha256(raw).hexdigest(), row['sha256'])
 
 

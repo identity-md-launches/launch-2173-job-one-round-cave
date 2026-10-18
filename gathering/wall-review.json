@@ -1,20 +1,16 @@
 {
-  "wall": "artifacts/gathering/wall-v3.png",
-  "format": "PNG RGB8",
-  "width": 1254,
-  "height": 1254,
-  "wall_sha256": "1dfc13ced7ee35bdbaae5439246fd231f19d62be8818ee18109a3b8d0735760e",
-  "source_wall": "artifacts/gathering/wall-v2.png (Gathering 02)",
-  "source_sha256": "1a1d749d89e85f417a65f80b9db8b8c67e7e52d4a4c0200d15fe6de091ec3e7d",
-  "review_method": "Visual inspection of source and generated full wall; final local PNG and JPEG checked separately.",
+  "wall_sha256": "7779e68c90298c77f269dbcaadcfe9f93acb260e90505e2197fde3cb7483078c",
+  "review_method": "Visual inspection of full PNG and decoded 512 px JPEG, plus independent pixel comparison to ancestor.",
   "observations": [
-    "Original square rock, roots, cracks, torchlight and framing visually retained.",
-    "Seated Pepe, four red/yellow trails, chalk meeting stone and bounded pebble trail remain in position.",
-    "New charcoal evidence loop with three chalk dabs and one red ochre closure lies left of Pepe head without touching ancestral paint.",
-    "Pepe has a wide mouth and heavy-lidded eyes. Both visible hands counted as five digits: four fingers and one thumb each. No hands or stencils added.",
-    "Earth pigments only; no observed writing, captions, numbers, signatures, logos, watermarks, borders, real people, political or hateful symbols."
+    "Seated Pepe retains heavy-lidded eyes and wide mouth.",
+    "Both original visible hands counted: four fingers and one thumb each, five digits per hand. No new hands or stencils.",
+    "Two small charcoal pebbles and their ochre thread sit above Pepe on previously bare stone.",
+    "All inherited marks remain in position; rock, cracks, roots, warm light and framing preserved.",
+    "No letters, numbers, captions, signatures, logos, watermarks, frames, real people or political symbols observed."
   ],
-  "limits": "Generative editing preserves the wall by visual comparison, not exact pixel identity. Structural checks do not certify visual quality.",
-  "unmet_visual_requirements": [],
-  "tool": "built-in image_gen edit; workspace import tool"
+  "limits": [
+    "Visual review is a local observation, not independent artistic certification.",
+    "Generated motif is small and intentionally worn; the JPEG reduces fine pigment detail."
+  ],
+  "unmet_visual_requirements": []
 }

@@ -21,6 +21,13 @@ CASES = [
  ('exact matching claim', ['line-4/tools/unit-flint/unit_flint.py', '10 km / 2 h', '--expect', '5 km/h', '--to', 'm/s', '--json'], 0),
  ('exact mismatching claim', ['line-4/tools/unit-flint/unit_flint.py', '10 km / 2 h', '--expect', '6 km/h', '--to', 'm/s', '--json'], 1),
  ('invalid dimension claim', ['line-4/tools/unit-flint/unit_flint.py', '0 m', '--expect', '0 s', '--json'], 2),
+ ('frozen benchmark', ['line-1/tools/frozen-benchmark/frozen_benchmark.py', 'demo'], 0),
+ ('JSON citations', ['line-2/tools/json-citations/json_citations.py', '--demo'], 0),
+ ('actual record citations', ['line-2/tools/json-citations/json_citations.py', '--file', 'dist/line-2/23.json'], 0),
+ ('event order witness', ['line-3/tools/order-witness/order_witness.py', 'demo'], 0),
+ ('inclusive duration bounds', ['line-4/tools/unit-flint/unit_flint.py', '5 MiB / (2 MiB/s)', '--at-least', '2000 ms', '--at-most', '3 s', '--to', 's', '--json'], 0),
+ ('duration bound failed', ['line-4/tools/unit-flint/unit_flint.py', '5 MiB / (2 MiB/s)', '--at-most', '2400 ms', '--json'], 1),
+ ('reversed duration bounds', ['line-4/tools/unit-flint/unit_flint.py', '2.5 s', '--at-least', '3 s', '--at-most', '2 s', '--json'], 2),
  ('shared reviewed timeline', ['shared/reviewed-timeline/reviewed_timeline.py', '--demo', '--clock-bound', '0.75 s'], 0),
  ('shared replay review', ['shared/replay-review/replay_review.py', 'demo'], 0),
 ]
@@ -41,7 +48,8 @@ def main():
                     'smallest_evaluated_size_meeting_target', 'sizes', 'finding_count',
                     'assessment', 'sha256', 'value', 'unit', 'check', 'replay',
                     'tampered_report_rejected', 'tampered_timeline_rejected', 'review_errors',
-                    'json_lines_checked', 'digest_pin_checked']
+                    'json_lines_checked', 'digest_pin_checked', 'bounds', 'rejected',
+                    'same_group_certain_order', 'overlap', 'widened', 'normalized_csv']
             row['observed'] = {k: value[k] for k in keys if k in value}
             if 'events' in value:
                 row['observed'].update(events=len(value['events']), omitted=len(value['omitted']),

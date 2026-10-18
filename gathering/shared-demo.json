@@ -9,7 +9,8 @@
     "A digest only authenticates bytes when obtained independently from a trusted source.",
     "Unicode triage is heuristic; a clean report is not a safety verdict.",
     "Raw and decoded findings may describe the same character; counts are not unique incidents.",
-    "Decoded offsets are local to a string; structural paths are local to the cited physical JSON line.",
+    "Decoded offsets are string-local; source_token/source_focus ranges are JSON-line-local; embedded_source_spans ranges refer to original embedded source bytes.",
+    "Source spans exclude an initial BOM and a trailing CR/LF; whole-source hashes cover every original byte.",
     "Only JSON-looking object lines are decoded; plain log messages are scanned as raw text.",
     "At most 100 interesting reviews, with 50 findings each, are retained; truncation is explicit.",
     "Clock bounds are analyst assumptions; overlap does not establish causal order.",
@@ -33,12 +34,31 @@
       "report": {
         "assessment": "review-required",
         "bytes": 78,
+        "citation_contract": "Zero-based half-open byte ranges in the original input. String tokens include quotes. Focus spans encode the original decoded finding, including entire escapes and surrogate pairs. Excerpts are ASCII byte notation, capped at 96 original bytes; hashes cover full spans.",
         "decoded_strings": 5,
         "finding_count": 4,
         "findings": [
           {
             "decoded_sha256": "1be7ff0ba06016cbaa1cac4e12b06e16a217b0309c648b74df0dc42d243518d5",
             "domain": "decoded-string",
+            "embedded_source_spans": {
+              "source_focus": {
+                "byte_end": 74,
+                "byte_start": 64,
+                "bytes": 10,
+                "excerpt_escaped_bytes": "\\\\u043ewner",
+                "excerpt_truncated": false,
+                "sha256": "be6464deb4a3103f4a157b90c76c14c2841eb1892225ee826f49000542b1458a"
+              },
+              "source_token": {
+                "byte_end": 75,
+                "byte_start": 63,
+                "bytes": 12,
+                "excerpt_escaped_bytes": "\"\\\\u043ewner\"",
+                "excerpt_truncated": false,
+                "sha256": "c5950823b6a1fd32340f914f31fd1ded51efca52417bccaf22cbbec23d3252b3"
+              }
+            },
             "evidence": {
               "byte_offset": 0,
               "char_offset": 0,
@@ -57,10 +77,44 @@
                 "pair": 3,
                 "role": "key"
               }
-            ]
+            ],
+            "source_focus": {
+              "byte_end": 74,
+              "byte_start": 64,
+              "bytes": 10,
+              "excerpt_escaped_bytes": "\\\\u043ewner",
+              "excerpt_truncated": false,
+              "sha256": "be6464deb4a3103f4a157b90c76c14c2841eb1892225ee826f49000542b1458a"
+            },
+            "source_token": {
+              "byte_end": 75,
+              "byte_start": 63,
+              "bytes": 12,
+              "excerpt_escaped_bytes": "\"\\\\u043ewner\"",
+              "excerpt_truncated": false,
+              "sha256": "c5950823b6a1fd32340f914f31fd1ded51efca52417bccaf22cbbec23d3252b3"
+            }
           },
           {
             "domain": "object-key",
+            "embedded_source_spans": {
+              "first_source_token": {
+                "byte_end": 60,
+                "byte_start": 53,
+                "bytes": 7,
+                "excerpt_escaped_bytes": "\"owner\"",
+                "excerpt_truncated": false,
+                "sha256": "622f06cbcd2e7e61637e17212e714e6c721d2dd5a9f7bc1aec911b65b34edcf5"
+              },
+              "source_token": {
+                "byte_end": 75,
+                "byte_start": 63,
+                "bytes": 12,
+                "excerpt_escaped_bytes": "\"\\\\u043ewner\"",
+                "excerpt_truncated": false,
+                "sha256": "c5950823b6a1fd32340f914f31fd1ded51efca52417bccaf22cbbec23d3252b3"
+              }
+            },
             "escaped": "\\u043ewner",
             "explanation": "Distinct keys in this object share the limited visual skeleton.",
             "first_escaped": "owner",
@@ -70,6 +124,14 @@
                 "role": "key"
               }
             ],
+            "first_source_token": {
+              "byte_end": 60,
+              "byte_start": 53,
+              "bytes": 7,
+              "excerpt_escaped_bytes": "\"owner\"",
+              "excerpt_truncated": false,
+              "sha256": "622f06cbcd2e7e61637e17212e714e6c721d2dd5a9f7bc1aec911b65b34edcf5"
+            },
             "location": [
               {
                 "pair": 3,
@@ -77,11 +139,37 @@
               }
             ],
             "rule": "lookalike-key-collision",
-            "skeleton": "owner"
+            "skeleton": "owner",
+            "source_token": {
+              "byte_end": 75,
+              "byte_start": 63,
+              "bytes": 12,
+              "excerpt_escaped_bytes": "\"\\\\u043ewner\"",
+              "excerpt_truncated": false,
+              "sha256": "c5950823b6a1fd32340f914f31fd1ded51efca52417bccaf22cbbec23d3252b3"
+            }
           },
           {
             "decoded_sha256": "f6fc7d03babf42ce7c717562c459282b21323650dab3376ae8f62fba4a518787",
             "domain": "decoded-string",
+            "embedded_source_spans": {
+              "source_focus": {
+                "byte_end": 51,
+                "byte_start": 41,
+                "bytes": 10,
+                "excerpt_escaped_bytes": "\\\\u043ewner",
+                "excerpt_truncated": false,
+                "sha256": "be6464deb4a3103f4a157b90c76c14c2841eb1892225ee826f49000542b1458a"
+              },
+              "source_token": {
+                "byte_end": 52,
+                "byte_start": 30,
+                "bytes": 22,
+                "excerpt_escaped_bytes": "\"owner and \\\\u043ewner\"",
+                "excerpt_truncated": false,
+                "sha256": "3393ebd29868864e3e21289cd9e42163c3ec0477b9bce2e3ef502af092926f10"
+              }
+            },
             "evidence": {
               "byte_offset": 10,
               "char_offset": 10,
@@ -100,11 +188,53 @@
                 "pair": 1,
                 "role": "value"
               }
-            ]
+            ],
+            "source_focus": {
+              "byte_end": 51,
+              "byte_start": 41,
+              "bytes": 10,
+              "excerpt_escaped_bytes": "\\\\u043ewner",
+              "excerpt_truncated": false,
+              "sha256": "be6464deb4a3103f4a157b90c76c14c2841eb1892225ee826f49000542b1458a"
+            },
+            "source_token": {
+              "byte_end": 52,
+              "byte_start": 30,
+              "bytes": 22,
+              "excerpt_escaped_bytes": "\"owner and \\\\u043ewner\"",
+              "excerpt_truncated": false,
+              "sha256": "3393ebd29868864e3e21289cd9e42163c3ec0477b9bce2e3ef502af092926f10"
+            }
           },
           {
             "decoded_sha256": "f6fc7d03babf42ce7c717562c459282b21323650dab3376ae8f62fba4a518787",
             "domain": "decoded-string",
+            "embedded_source_spans": {
+              "first_source_focus": {
+                "byte_end": 36,
+                "byte_start": 31,
+                "bytes": 5,
+                "excerpt_escaped_bytes": "owner",
+                "excerpt_truncated": false,
+                "sha256": "4c1029697ee358715d3a14a2add817c4b01651440de808371f78165ac90dc581"
+              },
+              "source_focus": {
+                "byte_end": 51,
+                "byte_start": 41,
+                "bytes": 10,
+                "excerpt_escaped_bytes": "\\\\u043ewner",
+                "excerpt_truncated": false,
+                "sha256": "be6464deb4a3103f4a157b90c76c14c2841eb1892225ee826f49000542b1458a"
+              },
+              "source_token": {
+                "byte_end": 52,
+                "byte_start": 30,
+                "bytes": 22,
+                "excerpt_escaped_bytes": "\"owner and \\\\u043ewner\"",
+                "excerpt_truncated": false,
+                "sha256": "3393ebd29868864e3e21289cd9e42163c3ec0477b9bce2e3ef502af092926f10"
+              }
+            },
             "evidence": {
               "byte_offset": 10,
               "char_offset": 10,
@@ -122,12 +252,36 @@
               "rule": "lookalike-collision",
               "skeleton": "owner"
             },
+            "first_source_focus": {
+              "byte_end": 36,
+              "byte_start": 31,
+              "bytes": 5,
+              "excerpt_escaped_bytes": "owner",
+              "excerpt_truncated": false,
+              "sha256": "4c1029697ee358715d3a14a2add817c4b01651440de808371f78165ac90dc581"
+            },
             "location": [
               {
                 "pair": 1,
                 "role": "value"
               }
-            ]
+            ],
+            "source_focus": {
+              "byte_end": 51,
+              "byte_start": 41,
+              "bytes": 10,
+              "excerpt_escaped_bytes": "\\\\u043ewner",
+              "excerpt_truncated": false,
+              "sha256": "be6464deb4a3103f4a157b90c76c14c2841eb1892225ee826f49000542b1458a"
+            },
+            "source_token": {
+              "byte_end": 52,
+              "byte_start": 30,
+              "bytes": 22,
+              "excerpt_escaped_bytes": "\"owner and \\\\u043ewner\"",
+              "excerpt_truncated": false,
+              "sha256": "3393ebd29868864e3e21289cd9e42163c3ec0477b9bce2e3ef502af092926f10"
+            }
           }
         ],
         "limitations": [
@@ -135,20 +289,32 @@
           "Identifier comparisons are local to each string; key comparisons are local to each object.",
           "Raw and decoded findings can describe the same character and are counted separately.",
           "Decoded locations are structural paths, not source-token byte offsets.",
-          "Only strict UTF-8 JSON with paired surrogate escapes is accepted; no JSONL or BOM."
+          "Only strict UTF-8 JSON with paired surrogate escapes is accepted; no JSONL or BOM.",
+          "Citations locate inherited heuristic findings; they do not expand confusables coverage or prove intent. Input bytes must be preserved separately to verify citations."
         ],
         "location_contract": "Object pair and array indexes are zero-based. Decoded evidence offsets refer only to that decoded string; raw-json offsets refer to original bytes.",
         "scanner_version": "1.0.0",
         "schema_version": 1,
         "sha256": "0338d4e5bc390fa108d12d0eba4be451941b3d84b1dff38eed8f4bd1df01f5a9",
         "source": "<physical-json-line>",
-        "tool": "json-lantern",
+        "tool": "json-citations",
         "tool_version": "1.0.0",
         "truncated": false,
         "unicode_version": "15.0.0",
+        "upstream_tool": "json-lantern",
+        "upstream_version": "1.0.0",
         "values": 5
       },
-      "source_escaped": "queue.jsonl"
+      "source_escaped": "queue.jsonl",
+      "source_sha256": "39705f563d5b2116f31ee9285aa905d32277ef85368d10c1134dcc2228930d79",
+      "source_span": {
+        "byte_end": 78,
+        "byte_start": 0,
+        "bytes": 78,
+        "excerpt_escaped_bytes": "{\"ts\":1792317602000,\"message\":\"owner and \\\\u043ewner\",\"owner\":1,\"\\\\u043ewner\":2}",
+        "excerpt_truncated": false,
+        "sha256": "0338d4e5bc390fa108d12d0eba4be451941b3d84b1dff38eed8f4bd1df01f5a9"
+      }
     },
     {
       "domain": "decoded-json-line",
@@ -156,11 +322,30 @@
       "report": {
         "assessment": "review-required",
         "bytes": 76,
+        "citation_contract": "Zero-based half-open byte ranges in the original input. String tokens include quotes. Focus spans encode the original decoded finding, including entire escapes and surrogate pairs. Excerpts are ASCII byte notation, capped at 96 original bytes; hashes cover full spans.",
         "decoded_strings": 5,
         "finding_count": 3,
         "findings": [
           {
             "domain": "object-key",
+            "embedded_source_spans": {
+              "first_source_token": {
+                "byte_end": 142,
+                "byte_start": 135,
+                "bytes": 7,
+                "excerpt_escaped_bytes": "\"owner\"",
+                "excerpt_truncated": false,
+                "sha256": "622f06cbcd2e7e61637e17212e714e6c721d2dd5a9f7bc1aec911b65b34edcf5"
+              },
+              "source_token": {
+                "byte_end": 152,
+                "byte_start": 145,
+                "bytes": 7,
+                "excerpt_escaped_bytes": "\"owner\"",
+                "excerpt_truncated": false,
+                "sha256": "622f06cbcd2e7e61637e17212e714e6c721d2dd5a9f7bc1aec911b65b34edcf5"
+              }
+            },
             "escaped": "owner",
             "explanation": "Repeated decoded key; consumers may discard an earlier value.",
             "first_location": [
@@ -169,17 +354,51 @@
                 "role": "key"
               }
             ],
+            "first_source_token": {
+              "byte_end": 63,
+              "byte_start": 56,
+              "bytes": 7,
+              "excerpt_escaped_bytes": "\"owner\"",
+              "excerpt_truncated": false,
+              "sha256": "622f06cbcd2e7e61637e17212e714e6c721d2dd5a9f7bc1aec911b65b34edcf5"
+            },
             "location": [
               {
                 "pair": 3,
                 "role": "key"
               }
             ],
-            "rule": "duplicate-key"
+            "rule": "duplicate-key",
+            "source_token": {
+              "byte_end": 73,
+              "byte_start": 66,
+              "bytes": 7,
+              "excerpt_escaped_bytes": "\"owner\"",
+              "excerpt_truncated": false,
+              "sha256": "622f06cbcd2e7e61637e17212e714e6c721d2dd5a9f7bc1aec911b65b34edcf5"
+            }
           },
           {
             "decoded_sha256": "1927f751064bf5a0ab4168b03116c0097487c185091d924acce3236d4d05c450",
             "domain": "decoded-string",
+            "embedded_source_spans": {
+              "source_focus": {
+                "byte_end": 123,
+                "byte_start": 117,
+                "bytes": 6,
+                "excerpt_escaped_bytes": "\\\\u202e",
+                "excerpt_truncated": false,
+                "sha256": "d33d32407681dc5e7d09e4f1edba066dd9b9e7c2add479e753a9971b4cf7d00d"
+              },
+              "source_token": {
+                "byte_end": 134,
+                "byte_start": 109,
+                "bytes": 25,
+                "excerpt_escaped_bytes": "\"hidden \\\\u202eevil\\\\u202c\"",
+                "excerpt_truncated": false,
+                "sha256": "538d8d3909915061151ae8a6a300312589e5eef7251417b00c5a4f3f3a22f95a"
+              }
+            },
             "evidence": {
               "byte_offset": 7,
               "char_offset": 7,
@@ -196,11 +415,45 @@
                 "pair": 1,
                 "role": "value"
               }
-            ]
+            ],
+            "source_focus": {
+              "byte_end": 44,
+              "byte_start": 38,
+              "bytes": 6,
+              "excerpt_escaped_bytes": "\\\\u202e",
+              "excerpt_truncated": false,
+              "sha256": "d33d32407681dc5e7d09e4f1edba066dd9b9e7c2add479e753a9971b4cf7d00d"
+            },
+            "source_token": {
+              "byte_end": 55,
+              "byte_start": 30,
+              "bytes": 25,
+              "excerpt_escaped_bytes": "\"hidden \\\\u202eevil\\\\u202c\"",
+              "excerpt_truncated": false,
+              "sha256": "538d8d3909915061151ae8a6a300312589e5eef7251417b00c5a4f3f3a22f95a"
+            }
           },
           {
             "decoded_sha256": "1927f751064bf5a0ab4168b03116c0097487c185091d924acce3236d4d05c450",
             "domain": "decoded-string",
+            "embedded_source_spans": {
+              "source_focus": {
+                "byte_end": 133,
+                "byte_start": 127,
+                "bytes": 6,
+                "excerpt_escaped_bytes": "\\\\u202c",
+                "excerpt_truncated": false,
+                "sha256": "7c5f09f90dc7619012d43ed80445f5403caf112de9343580c9c429685089a8dd"
+              },
+              "source_token": {
+                "byte_end": 134,
+                "byte_start": 109,
+                "bytes": 25,
+                "excerpt_escaped_bytes": "\"hidden \\\\u202eevil\\\\u202c\"",
+                "excerpt_truncated": false,
+                "sha256": "538d8d3909915061151ae8a6a300312589e5eef7251417b00c5a4f3f3a22f95a"
+              }
+            },
             "evidence": {
               "byte_offset": 14,
               "char_offset": 12,
@@ -217,7 +470,23 @@
                 "pair": 1,
                 "role": "value"
               }
-            ]
+            ],
+            "source_focus": {
+              "byte_end": 54,
+              "byte_start": 48,
+              "bytes": 6,
+              "excerpt_escaped_bytes": "\\\\u202c",
+              "excerpt_truncated": false,
+              "sha256": "7c5f09f90dc7619012d43ed80445f5403caf112de9343580c9c429685089a8dd"
+            },
+            "source_token": {
+              "byte_end": 55,
+              "byte_start": 30,
+              "bytes": 25,
+              "excerpt_escaped_bytes": "\"hidden \\\\u202eevil\\\\u202c\"",
+              "excerpt_truncated": false,
+              "sha256": "538d8d3909915061151ae8a6a300312589e5eef7251417b00c5a4f3f3a22f95a"
+            }
           }
         ],
         "limitations": [
@@ -225,23 +494,36 @@
           "Identifier comparisons are local to each string; key comparisons are local to each object.",
           "Raw and decoded findings can describe the same character and are counted separately.",
           "Decoded locations are structural paths, not source-token byte offsets.",
-          "Only strict UTF-8 JSON with paired surrogate escapes is accepted; no JSONL or BOM."
+          "Only strict UTF-8 JSON with paired surrogate escapes is accepted; no JSONL or BOM.",
+          "Citations locate inherited heuristic findings; they do not expand confusables coverage or prove intent. Input bytes must be preserved separately to verify citations."
         ],
         "location_contract": "Object pair and array indexes are zero-based. Decoded evidence offsets refer only to that decoded string; raw-json offsets refer to original bytes.",
         "scanner_version": "1.0.0",
         "schema_version": 1,
         "sha256": "62d39eb63b9fb076dd423abfd8c2e85cfada10b9185ada524c3f97c7ff0b0edb",
         "source": "<physical-json-line>",
-        "tool": "json-lantern",
+        "tool": "json-citations",
         "tool_version": "1.0.0",
         "truncated": false,
         "unicode_version": "15.0.0",
+        "upstream_tool": "json-lantern",
+        "upstream_version": "1.0.0",
         "values": 5
       },
-      "source_escaped": "queue.jsonl"
+      "source_escaped": "queue.jsonl",
+      "source_sha256": "39705f563d5b2116f31ee9285aa905d32277ef85368d10c1134dcc2228930d79",
+      "source_span": {
+        "byte_end": 155,
+        "byte_start": 79,
+        "bytes": 76,
+        "excerpt_escaped_bytes": "{\"ts\":1792317603000,\"message\":\"hidden \\\\u202eevil\\\\u202c\",\"owner\":1,\"owner\":2}",
+        "excerpt_truncated": false,
+        "sha256": "62d39eb63b9fb076dd423abfd8c2e85cfada10b9185ada524c3f97c7ff0b0edb"
+      }
     }
   ],
   "schema_version": 1,
   "tampered_timeline_rejected": true,
-  "tool": "replay-review"
+  "tool": "replay-review",
+  "tool_version": "1.1.0"
 }

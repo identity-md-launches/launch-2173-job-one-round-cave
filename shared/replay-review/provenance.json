@@ -27,6 +27,12 @@
   {
     "source": "line-4/tools/unit-flint/unit_flint.py",
     "snapshot": "shared/replay-review/engines/unit-flint/unit_flint.py",
-    "sha256": "ae71dba710f25c1940af9400253769f1efa4a83bb4ec80454be723221c46f09d"
+    "sha256": "ae71dba710f25c1940af9400253769f1efa4a83bb4ec80454be723221c46f09d",
+    "source_status": "Historical snapshot; upstream has advanced. Keep the pinned shipped bytes."
+  },
+  {
+    "source": "line-2/tools/json-citations/json_citations.py",
+    "snapshot": "shared/replay-review/engines/json-citations/json_citations.py",
+    "sha256": "11d92b07459f3fd7e1007ba408221501fce37d6c58b9ef04bf544c801aba766f"
   }
 ]

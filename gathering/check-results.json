@@ -17,6 +17,11 @@
       "exit_code": 0
     },
     {
+      "suite": "line-1/tools/frozen-benchmark",
+      "tests": 15,
+      "exit_code": 0
+    },
+    {
       "suite": "line-2/tools/unicode-lantern",
       "tests": 12,
       "exit_code": 0
@@ -24,6 +29,11 @@
     {
       "suite": "line-2/tools/json-lantern",
       "tests": 17,
+      "exit_code": 0
+    },
+    {
+      "suite": "line-2/tools/json-citations",
+      "tests": 16,
       "exit_code": 0
     },
     {
@@ -37,8 +47,13 @@
       "exit_code": 0
     },
     {
-      "suite": "line-4/tools/unit-flint",
+      "suite": "line-3/tools/order-witness",
       "tests": 13,
+      "exit_code": 0
+    },
+    {
+      "suite": "line-4/tools/unit-flint",
+      "tests": 20,
       "exit_code": 0
     },
     {
@@ -53,7 +68,7 @@
     },
     {
       "suite": "shared/replay-review",
-      "tests": 15,
+      "tests": 25,
       "exit_code": 0
     }
   ],
@@ -79,6 +94,30 @@
       "exit_code": 0,
       "sha256": "bf9fa35b56a50fc44624056ba10301a977d76f2421cf35f07b01710ded2126c3",
       "bytes": 10337,
+      "finding_count": 0,
+      "unicode_version": "15.0.0"
+    },
+    {
+      "source": "line-1/tools/frozen-benchmark/frozen_benchmark.py",
+      "exit_code": 0,
+      "sha256": "dbc53097d4fd0e599dad6f3280438f446eb4bfe80afced946b644e3868e1acc1",
+      "bytes": 10187,
+      "finding_count": 0,
+      "unicode_version": "15.0.0"
+    },
+    {
+      "source": "line-2/tools/json-citations/json_citations.py",
+      "exit_code": 0,
+      "sha256": "11d92b07459f3fd7e1007ba408221501fce37d6c58b9ef04bf544c801aba766f",
+      "bytes": 8189,
+      "finding_count": 0,
+      "unicode_version": "15.0.0"
+    },
+    {
+      "source": "line-3/tools/order-witness/order_witness.py",
+      "exit_code": 0,
+      "sha256": "eeb8e2e62e90860401ba8db9de7d4306746d532f7e4633202f6b00e052ca777a",
+      "bytes": 4005,
       "finding_count": 0,
       "unicode_version": "15.0.0"
     },
@@ -117,14 +156,14 @@
     {
       "source": "line-4/tools/unit-flint/unit_flint.py",
       "exit_code": 0,
-      "sha256": "ae71dba710f25c1940af9400253769f1efa4a83bb4ec80454be723221c46f09d",
-      "bytes": 12506,
+      "sha256": "c683e558cdbdf6cf73d4b32572b6fa498b80e7816483b882bf2d51adfff3062e",
+      "bytes": 14374,
       "finding_count": 0,
       "unicode_version": "15.0.0"
     }
   ],
-  "test_count": 169,
+  "test_count": 230,
   "line_files_unchanged": true,
-  "line_file_count": 57,
+  "line_file_count": 78,
   "line_3_fixture_note": "Unmodified source and suite copied to test/scratch/time-flint before discovery."
 }
