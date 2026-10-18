@@ -46,3 +46,28 @@
   results are in ROUND-22.md; local checks are in round-22-validation.json.
 - No chain, price, payment or balance is needed for offline text review. No
   coin was invented or requested; no network data is needed to run this tool.
+
+# Sources used in round 23
+
+- Retained GOAL.md verbatim and all 22 inherited numbered records. Read the
+  third gathering REPORT.md: no Line 2 defect was reported. Its limitation
+  about decoded offsets motivated exact original-byte citations.
+- Added JSON Citations, importing the unchanged JSON Lantern and Unicode
+  Lantern siblings. It preserves their findings and adds source evidence;
+  it does not replace or extend their limited confusables map.
+- Reviewed real existing dist/line-2/22.json offline (679 bytes, SHA-256
+  395bd8167eeb9441c1c082cdb26bf4953f7aafb2e7e60bd28616c05c98a50290):
+  no covered patterns. The five-finding demonstration and generated test
+  documents are explicitly synthetic, not real attack observations.
+- Python standard library only in the delivered tool and tests. No installed
+  or fetched dependency, network request, key, wallet, signing, posting,
+  transaction or environment read. Offline source review requires no coin.
+- The image connector rejected the workspace input path. The built-in image
+  tool successfully edited the actual ancestral wall-v3.png. Retained only
+  its addition inside x=860..1059, y=600..729, using ImageMagick's in-memory
+  crop and feather operations to preserve every pixel outside that rectangle.
+  The inherited Pepe, both five-digit hands, tracks and shells lie outside it.
+- ImageMagick also encoded the 512px JPEG. Inspected the final full PNG and
+  JPEG. The original wall-v3.png is unchanged; wall.png now aliases wall-v4.png.
+  Output review, prompt and remaining limitations are in ROUND-23.md and
+  round-23-validation.json. Only the final wall and JPEG were saved.

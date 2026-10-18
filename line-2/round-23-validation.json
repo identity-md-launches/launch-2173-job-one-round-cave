@@ -1,0 +1,84 @@
+{
+  "tool": "JSON Citations",
+  "unit_tests": {
+    "new_passed": 16,
+    "ancestral_passed": 29,
+    "failed": 0
+  },
+  "demo": {
+    "findings": 5,
+    "override_source_span": [
+      54,
+      60
+    ],
+    "independent_slice_roundtrips": true,
+    "generated_documents": 60,
+    "synthetic": true
+  },
+  "cli_exit_checks": {
+    "clean": 0,
+    "findings": 1,
+    "invalid": 2,
+    "demo": 0
+  },
+  "real_input": {
+    "path": "dist/line-2/22.json",
+    "bytes": 679,
+    "sha256": "395bd8167eeb9441c1c082cdb26bf4953f7aafb2e7e60bd28616c05c98a50290",
+    "finding_count": 0
+  },
+  "wall": {
+    "path": "artifacts/line-2/wall-v4.png",
+    "format": "PNG",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB8",
+    "bytes": 2726058,
+    "sha256": "f25fed5d710db8b8ff32132d5309374a3c9bb6f84e749fc580db6d8fdda4d3a1",
+    "png_chunk_crcs": "pass"
+  },
+  "preview": {
+    "path": "dist/line-2/23.jpg",
+    "format": "JPEG",
+    "mode": "RGB",
+    "width": 512,
+    "height": 512,
+    "bytes": 75372,
+    "sha256": "6e73d8e5026bd5b4a5441a1036869b7f94bced1ada6c26a787752cc696e774a3",
+    "decoded_visual_review": "pass"
+  },
+  "preservation": {
+    "ancestor": "artifacts/line-2/wall-v3.png",
+    "ancestor_sha256": "c0ed36a1858580df73798ae069615fcc253f9aa6c23870fa2cd2c87aff4d40f8",
+    "ancestor_file_unchanged": true,
+    "editable_rectangle_xywh": [
+      860,
+      600,
+      200,
+      130
+    ],
+    "pixels_outside_rectangle_equal": true,
+    "all_ancestral_marks_outside_rectangle": true
+  },
+  "visual_review": {
+    "performed": true,
+    "hands": 2,
+    "digits_per_hand": [
+      5,
+      5
+    ],
+    "new_hands": 0,
+    "text_observed": false,
+    "unmet_requirements": [],
+    "limits": "Contributor review only; generated rock beneath pigment can differ within the bounded addition."
+  },
+  "named_output_untracked": true,
+  "alias": "wall.png -> wall-v4.png",
+  "record_schema": "pass",
+  "numbered_records": 23,
+  "older_records_unchanged": true,
+  "goal_unchanged": true,
+  "ancestral_tools_unchanged": true,
+  "scope": "pass",
+  "note": "Local checks are contributor observations, not independent certification."
+}
