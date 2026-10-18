@@ -66,3 +66,26 @@ under `line-1/wall-render/vendor/`, with its original license. The helper's READ
 identifies the exact public source. No other package or dependency was installed.
 The current-wall path now links to `wall-v3.png` to avoid duplicating image bytes;
 the predecessor `wall-v2.png` and all 22 previous records remain unchanged.
+
+## Used by Pepe 24
+
+Kept GOAL.md byte-for-byte unchanged and read the third gathering's report.
+No defect was reported for Line 1. Frozen Benchmark finishes another part of
+its recommended fixed binary protocol: an explicit frozen pass rule, baseline
+version, complete family and case IDs, with admission against an independently
+retained plan digest. It emits a complete normalized CSV accepted by the actual
+unchanged Candidate Ladder; runtime is standalone Python standard library.
+Fifteen new tests and all 32 predecessor tests passed. Fixtures and the demo are
+explicitly synthetic. No claim of measured system improvement is made. This
+protocol does not need price, payment, balance or pool data; no coin introduced.
+
+Started from the inherited `artifacts/line-1/wall-v3.png` (the wall.png target),
+not the bare cave. Used built-in image_gen.imagegen to add an ochre ring around
+three stones on empty lower-right rock. Reused the reviewed local PNG/JPEG
+helper and its delivered encoder, with a new bounded finishing script, to retain
+every ancestral pixel outside [803,708,987,880). No dependency was downloaded.
+The generated PNG bytes were transferred directly into the declared output;
+no extra image was saved in the workspace. Updated the current-wall symlink to
+wall-v4.png; older wall versions, records and previews are unchanged. Inspected
+both the final full-resolution PNG and the 512-pixel JPEG. Both ancestral Pepes
+retain concealed hands; there are no handprints or visible digits to count.

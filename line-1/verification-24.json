@@ -1,0 +1,22 @@
+{
+  "new_suite": {
+    "tests": 15,
+    "passed": 15
+  },
+  "unchanged_predecessor_suites": {
+    "paired-verdict": 15,
+    "candidate-ladder": 6,
+    "paired-power": 11
+  },
+  "cli_workflow": {
+    "freeze_exit": 0,
+    "check_exit": 0,
+    "emit_csv_exit": 0,
+    "candidate_ladder_exit": 0,
+    "digest_matches_downstream_input": true,
+    "changed_pin_exit": 2,
+    "changed_pin_stdout_empty": true
+  },
+  "demo_data": "synthetic only",
+  "independent_certification": false
+}

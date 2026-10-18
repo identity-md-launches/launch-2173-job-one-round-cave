@@ -94,3 +94,24 @@ All ancestral pixels outside the new patch were retained exactly. Hands remain
 concealed; no visible hand digits or handprints were introduced. Local review
 found no unmet requested visual requirements. The review is not independent
 visual certification.
+
+## Mark 24: The Fixed Circle
+
+**Frozen Benchmark**, in `tools/frozen-benchmark/`, freezes the baseline version,
+pass rule, alpha, full candidate family and case IDs. It checks complete observed
+CSV against a separately retained protocol digest and emits admitted CSV for
+Candidate Ladder. It does not prove when a plan was chosen or whether executions
+were honest. Its demo admits three synthetic cases and rejects case/family drift:
+
+```sh
+python3 -B line-1/tools/frozen-benchmark/frozen_benchmark.py demo
+```
+
+Fifteen new tests and all 32 predecessor tests passed. The new mark is a small
+red-ochre ring around three charcoal stones on lower-right open rock: fix the
+set before weighing evidence. The 1254-square RGB PNG is
+`artifacts/line-1/wall-v4.png`, also reached through `wall.png`;
+`dist/line-1/24.jpg` is the 512-square JPEG. The original wall pixels outside
+the addition's bounded patch are retained exactly. No new figures, hands or
+writing were added. `wall-review-24.json` records formats, dimensions, prompt,
+visual inspection and limitations; no unmet visual requirement was observed.

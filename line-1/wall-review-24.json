@@ -1,0 +1,49 @@
+{
+  "mark_number": 24,
+  "name": "The Fixed Circle",
+  "wall": {
+    "path": "artifacts/line-1/wall-v4.png",
+    "format": "PNG",
+    "width": 1254,
+    "height": 1254,
+    "bit_depth": 8,
+    "color_model": "RGB",
+    "bytes": 2843543,
+    "sha256": "28101e7496a715ce48856c0bbdc00598d363c60b6f378a21748145968a410dbd"
+  },
+  "current_wall_alias": "artifacts/line-1/wall.png -> wall-v4.png",
+  "preview": {
+    "path": "dist/line-1/24.jpg",
+    "format": "JPEG",
+    "width": 512,
+    "height": 512,
+    "bytes": 65932,
+    "sha256": "832d936b03f75975e7f3c2a05f27b10287dcc16d20d0f92edf3eec18f232a186"
+  },
+  "edit_target": "artifacts/line-1/wall-v3.png",
+  "ancestral_png_sha256": "3cb4e3592f763bd8a2cbf9b0fa7288152761ec8d015c387ba4afbc0e7b66699b",
+  "generator": "built-in image_gen.imagegen; existing local Node PNG/JPEG helper for bounded compositing and preview",
+  "prompt": "Use case: precise-object-edit. Edit the supplied ancestral square cave wall. Preserve every existing painting exactly: two ochre Pepe frogs, balance, branching paths, pouch and stones. Preserve original size 1254x1254, rock, roots, cracks, lighting, palette and framing. Add only a small primitive red-ochre closed oval enclosing three uneven charcoal pebble dabs on the empty rock at lower right, around x 835 to 1015 and y 680 to 825. This new mark symbolizes fixing a benchmark case set before a trial. Use worn thumb-dab pigment, rock showing through. Do not add any new figures, hands or handprints. Existing Pepes have wide mouths, heavy-lidded eyes and concealed hands. No letters, numbers, writing, captions, logos, watermarks, borders, frames, photographs, real people or political symbols. Save the edited actual PNG under artifacts/line-1/wall-v4.png in the current workspace if saving is supported. Do not save any other image in the workspace.",
+  "pixel_preservation": {
+    "changed_patch_xyxy_exclusive": [
+      803,
+      708,
+      987,
+      880
+    ],
+    "changed_pixels": 30698,
+    "all_pixels_outside_patch_identical_to_ancestor": true,
+    "edge_blend_pixels": 10
+  },
+  "visual_review": {
+    "method": "Inspected finished full-resolution PNG and decoded 512-square JPEG using view_image. Compared with inherited wall.",
+    "new_mark": "A worn ochre closed ring contains three irregular charcoal stone dabs on formerly empty lower-right rock.",
+    "pepe": "Both ancestral cave Pepes retain wide mouths and heavy-lidded eyes.",
+    "hands": "Both ancestral figures have concealed hands. Zero visible hands or handprints; no visible digits to count. No new hands added.",
+    "ancestry": "Both Pepes, balance, branching paths, pouch and earlier stones are outside the changed patch and preserved exactly.",
+    "rock_and_framing": "Original square size, framing, roots, rock, cracks, torchlight and colors retained exactly outside the bounded patch.",
+    "forbidden_content": "No observed letters, numbers, captions, signatures, logos, watermarks, borders, frames, real people, political or hateful symbols.",
+    "unmet_visual_requirements": [],
+    "limitations": "Local visual judgment, not independent visual certification. Rock within the addition patch was generatively edited and blended; those bare-rock pixels are not identical to the predecessor."
+  }
+}
